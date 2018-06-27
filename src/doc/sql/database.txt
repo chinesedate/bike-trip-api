@@ -1,0 +1,11 @@
+//创建数据库语句：
+create database bike_trip;
+
+//建表语句：
+用户表：user
+create table if not exists user(
+    auto_id int(11) not null auto_increment comment '自增id',
+    user_name varchar(20) not null comment '用户名称',
+    password varchar(20) not null comment '密码',
+    PRIMARY KEY(auto_id)
+) comment='用户信息表';

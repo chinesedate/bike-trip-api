@@ -1,1 +1,2 @@
-# bike-trip-api
+# bike-tripe-api
+a server of a website
