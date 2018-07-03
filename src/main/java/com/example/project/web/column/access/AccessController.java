@@ -1,7 +1,9 @@
 package com.example.project.web.column.access;
 
 import com.example.project.model.UserBo;
+import com.example.project.model.response.JSONResponse;
 import com.example.project.service.UserService;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +27,8 @@ public class AccessController {
 
     // 注册用户
     @ResponseBody
-    @RequestMapping(value = "/sign/in", method = RequestMethod.POST)
-    public void signIn(
+    @RequestMapping(value = "/sign/up", method = RequestMethod.POST)
+    public void signUp(
             @RequestParam("userName") String userName,
             @RequestParam("password") String password
     ) {
@@ -35,4 +37,23 @@ public class AccessController {
         userBo.setPassword(password);
         this.userService.insertUser(userBo);
     }
+
+    //FIXME: 这里暂时没有做登录权限的控制
+    // 用户登录
+    @ResponseBody
+    @RequestMapping(value = "/sign/in", method = RequestMethod.POST)
+    public Object signIn(
+            @RequestParam("userName") String userName,
+            @RequestParam("password") String password
+    ) {
+        Integer count = this.userService.countUser(userName, password);
+        if (count > 1) {
+            return JSONResponse.toFail("", "查询多个重复账号");
+        } else if (count < 1) {
+            return JSONResponse.toFail("", "用户不存在");
+        } else {
+            return JSONResponse.toSuccess("", "登录成功");
+        }
+    }
+
 }

@@ -9,4 +9,6 @@ import com.example.project.model.UserBo;
 public interface UserService {
 
     Integer insertUser(UserBo userBo);
+
+    Integer countUser(String userName, String password);
 }

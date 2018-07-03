@@ -18,6 +18,10 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     public Integer insertUser(UserBo userBo) {
-        return this.userMapper.insertUser(userBo);
+        return this.userMapper.insertUser_USER(userBo);
+    }
+
+    public Integer countUser(String userName, String password) {
+        return this.userMapper.countUser_USER(userName, password);
     }
 }
