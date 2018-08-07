@@ -28,7 +28,7 @@ public class AccessController {
     // 注册用户
     @ResponseBody
     @RequestMapping(value = "/sign/up", method = RequestMethod.POST)
-    public void signUp(
+    public Object signUp(
             @RequestParam("userName") String userName,
             @RequestParam("password") String password
     ) {
@@ -36,6 +36,8 @@ public class AccessController {
         userBo.setUserName(userName);
         userBo.setPassword(password);
         this.userService.insertUser(userBo);
+
+        return JSONResponse.toSuccess("", "注册成功");
     }
 
     //FIXME: 这里暂时没有做登录权限的控制
