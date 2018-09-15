@@ -1,4 +1,4 @@
-package com.example.project.model;
+package com.example.project.model.bo;
 
 /**
  * Created by xuhan on 2018/6/26.

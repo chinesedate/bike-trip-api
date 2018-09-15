@@ -1,7 +1,7 @@
 package com.example.project.service;
 
 
-import com.example.project.model.UserBo;
+import com.example.project.model.bo.UserBo;
 
 /**
  * Created by xuhan on 2018/2/23.

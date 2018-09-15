@@ -9,3 +9,11 @@ create table if not exists user(
     password varchar(20) not null comment '密码',
     PRIMARY KEY(auto_id)
 ) comment='用户信息表';
+
+博客表：blog
+create table if not exists blog(
+    auto_id int(11) not null auto_increment comment '自增id',
+    title varchar(200) not null comment '标题',
+    content varchar(1000) not null comment '正文',
+    PRIMARY KEY(auto_id)
+) comment='博客表';

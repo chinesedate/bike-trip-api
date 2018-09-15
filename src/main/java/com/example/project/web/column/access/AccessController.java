@@ -1,9 +1,8 @@
 package com.example.project.web.column.access;
 
-import com.example.project.model.UserBo;
+import com.example.project.model.bo.UserBo;
 import com.example.project.model.response.JSONResponse;
 import com.example.project.service.UserService;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

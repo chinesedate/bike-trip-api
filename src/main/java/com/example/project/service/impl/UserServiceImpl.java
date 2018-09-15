@@ -3,7 +3,7 @@ package com.example.project.service.impl;
 
 import com.example.project.dao.UserMapper;
 
-import com.example.project.model.UserBo;
+import com.example.project.model.bo.UserBo;
 import com.example.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

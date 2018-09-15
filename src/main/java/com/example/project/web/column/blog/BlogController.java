@@ -1,9 +1,12 @@
 package com.example.project.web.column.blog;
 
+import com.example.project.model.bo.BlogBo;
 import com.example.project.model.response.JSONResponse;
+import com.example.project.service.BlogService;
 import com.example.project.utils.FtpUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,10 +21,16 @@ import java.util.logging.Logger;
  * Created by xuhan on 2018/7/20.
  */
 @Controller
+@RequestMapping(value = "/blog")
 public class BlogController {
+
+    @Autowired
+    private BlogService blogService;
+
     private final static Log log = LogFactory.getLog(BlogController.class);
+
     @ResponseBody
-    @RequestMapping(value = "/blog/image/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/image/upload", method = RequestMethod.POST)
     public Object uploadImage(
             @RequestParam("image") MultipartFile image
     ) {
@@ -34,5 +43,16 @@ public class BlogController {
             return JSONResponse.toFail("", "image not saved");
         }
         return JSONResponse.toSuccess(imagePath, "image saved");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/content/save", method = RequestMethod.POST)
+    public Object saveContent(
+            @RequestParam("title") String title,
+            @RequestParam("content") String content
+    ) {
+        BlogBo bo = new BlogBo(title, content);
+        this.blogService.saveBlogContent(bo);
+        return JSONResponse.toSuccess("", "blog saved");
     }
 }

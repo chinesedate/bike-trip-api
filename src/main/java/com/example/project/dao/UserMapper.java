@@ -1,6 +1,6 @@
 package com.example.project.dao;
 
-import com.example.project.model.UserBo;
+import com.example.project.model.bo.UserBo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
