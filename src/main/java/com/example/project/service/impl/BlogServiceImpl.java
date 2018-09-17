@@ -6,6 +6,8 @@ import com.example.project.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by xuhan on 2018/9/15.
  */
@@ -17,5 +19,9 @@ public class BlogServiceImpl implements BlogService {
 
     public int saveBlogContent(BlogBo bo) {
         return this.blogMapper.saveBlogContent_BLOG(bo);
+    }
+
+    public List<BlogBo> selectBlogList() {
+        return this.blogMapper.selectBlogList_BLOG();
     }
 }

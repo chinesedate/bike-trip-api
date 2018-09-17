@@ -2,9 +2,15 @@ package com.example.project.service;
 
 import com.example.project.model.bo.BlogBo;
 
+import java.util.List;
+
 /**
  * Created by xuhan on 2018/9/15.
  */
 public interface BlogService {
+    // 保存博客信息
     int saveBlogContent(BlogBo bo);
+
+    // 查询博客列表
+    List<BlogBo> selectBlogList();
 }

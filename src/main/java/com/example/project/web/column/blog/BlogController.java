@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -54,5 +55,13 @@ public class BlogController {
         BlogBo bo = new BlogBo(title, content);
         this.blogService.saveBlogContent(bo);
         return JSONResponse.toSuccess("", "blog saved");
+    }
+
+    // 获取日志列表
+    @ResponseBody
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    public Object queryBlogList() {
+        List<BlogBo> list = this.blogService.selectBlogList();
+        return JSONResponse.toSuccess(list, "blog list got");
     }
 }

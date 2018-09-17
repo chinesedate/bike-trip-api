@@ -7,7 +7,7 @@
         <result property="content" column="content" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <!-- 新建用户 -->
+    <!-- 添加博客 -->
     <insert id="saveBlogContent_BLOG" useGeneratedKeys="true" keyProperty="autoId" parameterType="BlogBo">
         INSERT INTO
         blog(
@@ -19,16 +19,14 @@
         )
     </insert>
 
-    <!-- 用户登录验证 -->
-    <select id="countUser_USER" resultType="Integer">
+    <!-- 查询博客列表 -->
+    <select id="selectBlogList_BLOG" resultMap="blogBo">
         SELECT
-        count(*)
-        FROM
-        user
-        where
-        user_name = #{userName}
-        and
-        password = #{password}
+         auto_id,
+         title,
+         content
+         FROM
+         blog
     </select>
 
 </mapper>
