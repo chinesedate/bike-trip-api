@@ -5,6 +5,7 @@ package com.example.project.model.bo;
  */
 public class BlogBo {
     private Integer autoId;
+    private String titleImageUrl;   // 题图地址
     private String title;
     private String content;
 
@@ -12,7 +13,8 @@ public class BlogBo {
     public BlogBo() {
     }
 
-    public BlogBo(String title, String content) {
+    public BlogBo(String titleImageUrl, String title, String content) {
+        this.titleImageUrl = titleImageUrl;
         this.title = title;
         this.content = content;
     }
@@ -23,6 +25,14 @@ public class BlogBo {
 
     public void setAutoId(Integer autoId) {
         this.autoId = autoId;
+    }
+
+    public String getTitleImageUrl() {
+        return titleImageUrl;
+    }
+
+    public void setTitleImageUrl(String titleImageUrl) {
+        this.titleImageUrl = titleImageUrl;
     }
 
     public String getTitle() {

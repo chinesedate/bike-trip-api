@@ -13,6 +13,7 @@ create table if not exists user(
 博客表：blog
 create table if not exists blog(
     auto_id int(11) not null auto_increment comment '自增id',
+    title_image_url varchar(1000) null default null commet '题图',
     title varchar(200) not null comment '标题',
     content varchar(1000) not null comment '正文',
     PRIMARY KEY(auto_id)

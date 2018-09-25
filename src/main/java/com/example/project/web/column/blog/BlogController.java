@@ -49,10 +49,11 @@ public class BlogController {
     @ResponseBody
     @RequestMapping(value = "/content/save", method = RequestMethod.POST)
     public Object saveContent(
+            @RequestParam("titleImageUrl") String titleImageUrl,
             @RequestParam("title") String title,
             @RequestParam("content") String content
     ) {
-        BlogBo bo = new BlogBo(title, content);
+        BlogBo bo = new BlogBo(titleImageUrl,title, content);
         this.blogService.saveBlogContent(bo);
         return JSONResponse.toSuccess("", "blog saved");
     }
