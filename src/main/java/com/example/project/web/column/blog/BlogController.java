@@ -54,6 +54,10 @@ public class BlogController {
             @RequestParam("content") String content
     ) {
         BlogBo bo = new BlogBo(titleImageUrl,title, content);
+        if (content.startsWith("<p>") && !content.startsWith("<p><img")) {
+            String briefIntroduction = content.substring(3, content.indexOf("</p>"));
+            bo.setBriefIntroduction(briefIntroduction);
+        }
         this.blogService.saveBlogContent(bo);
         return JSONResponse.toSuccess("", "blog saved");
     }

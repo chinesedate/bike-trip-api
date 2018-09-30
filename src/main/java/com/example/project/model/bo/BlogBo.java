@@ -8,6 +8,7 @@ public class BlogBo {
     private String titleImageUrl;   // 题图地址
     private String title;
     private String content;
+    private String briefIntroduction;    // 简介
 
 
     public BlogBo() {
@@ -49,5 +50,13 @@ public class BlogBo {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getBriefIntroduction() {
+        return briefIntroduction;
+    }
+
+    public void setBriefIntroduction(String briefIntroduction) {
+        this.briefIntroduction = briefIntroduction;
     }
 }
