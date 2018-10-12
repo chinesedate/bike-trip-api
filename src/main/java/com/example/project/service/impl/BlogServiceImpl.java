@@ -24,4 +24,8 @@ public class BlogServiceImpl implements BlogService {
     public List<BlogBo> selectBlogList() {
         return this.blogMapper.selectBlogList_BLOG();
     }
+
+    public BlogBo selectBlogOne(Integer id){
+        return this.blogMapper.selectBlogOne_BLOG(id);
+    }
 }

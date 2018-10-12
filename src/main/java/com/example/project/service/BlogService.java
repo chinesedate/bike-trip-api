@@ -13,4 +13,7 @@ public interface BlogService {
 
     // 查询博客列表
     List<BlogBo> selectBlogList();
+
+    // 查询一篇博客
+    BlogBo selectBlogOne(Integer id);
 }

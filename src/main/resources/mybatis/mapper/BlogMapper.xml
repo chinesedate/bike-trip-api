@@ -37,4 +37,16 @@
          blog
     </select>
 
+    <!--查询一篇日志-->
+    <select id="selectBlogOne_BLOG" resultMap="blogBo">
+        SELECT
+         title_image_url,
+         title,
+         brief_introduction,
+         content
+         FROM
+         blog
+         where auto_id = #{id}
+    </select>
+
 </mapper>

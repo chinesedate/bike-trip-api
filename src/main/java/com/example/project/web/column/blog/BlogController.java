@@ -8,10 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -68,5 +65,15 @@ public class BlogController {
     public Object queryBlogList() {
         List<BlogBo> list = this.blogService.selectBlogList();
         return JSONResponse.toSuccess(list, "blog list got");
+    }
+
+    // 查询一篇日志
+    @ResponseBody
+    @RequestMapping(value = "/one/{id}", method = RequestMethod.GET)
+    public Object queryBlogOne(
+            @PathVariable("id") Integer id
+    ) {
+        BlogBo blogBo = this.blogService.selectBlogOne(id);
+        return JSONResponse.toSuccess(blogBo, "one blog got");
     }
 }

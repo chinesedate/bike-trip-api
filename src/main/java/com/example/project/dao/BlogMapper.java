@@ -14,4 +14,6 @@ public interface BlogMapper {
     int saveBlogContent_BLOG(BlogBo bo);
 
     List<BlogBo> selectBlogList_BLOG();
+
+    BlogBo selectBlogOne_BLOG(Integer id);
 }
