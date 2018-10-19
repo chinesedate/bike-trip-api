@@ -7,6 +7,7 @@
         <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="briefIntroduction" column="brief_introduction" jdbcType="VARCHAR"/>
         <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="DATE"/>
     </resultMap>
 
     <!-- 添加博客 -->
@@ -43,7 +44,8 @@
          title_image_url,
          title,
          brief_introduction,
-         content
+         content,
+         created_at
          FROM
          blog
          where auto_id = #{id}

@@ -17,5 +17,6 @@ create table if not exists blog(
     title varchar(200) not null comment '标题',
     brief_introduction varchar(200) not null comment '正文简介',
     content varchar(1000) not null comment '正文',
+    created_at datetime null default null comment '创建时间',
     PRIMARY KEY(auto_id)
 ) comment='博客表';

@@ -1,5 +1,7 @@
 package com.example.project.model.bo;
 
+import java.util.Date;
+
 /**
  * Created by xuhan on 2018/9/15.
  */
@@ -9,6 +11,7 @@ public class BlogBo {
     private String title;
     private String content;
     private String briefIntroduction;    // 简介
+    private Date createdAt;   // 创建时间
 
 
     public BlogBo() {
@@ -58,5 +61,13 @@ public class BlogBo {
 
     public void setBriefIntroduction(String briefIntroduction) {
         this.briefIntroduction = briefIntroduction;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
