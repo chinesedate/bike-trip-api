@@ -6,13 +6,16 @@ create database bike_trip;
 create table if not exists user(
     auto_id int(11) not null auto_increment comment '自增id',
     user_name varchar(20) not null comment '用户名称',
+    nickname varchar(20) comment '用户昵称',
     password varchar(20) not null comment '密码',
+    avatar_url varchar(500) comment '用户头像地址',
     PRIMARY KEY(auto_id)
 ) comment='用户信息表';
 
 博客表：blog
 create table if not exists blog(
     auto_id int(11) not null auto_increment comment '自增id',
+    author_id int(11) not null comment '作者id',
     title_image_url varchar(1000) null default null comment '题图',
     title varchar(200) not null comment '标题',
     brief_introduction varchar(200) not null comment '正文简介',

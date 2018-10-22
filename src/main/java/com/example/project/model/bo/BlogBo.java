@@ -12,6 +12,7 @@ public class BlogBo {
     private String content;
     private String briefIntroduction;    // 简介
     private Date createdAt;   // 创建时间
+    private AuthorBo author;   // 作者信息
 
 
     public BlogBo() {
@@ -69,5 +70,13 @@ public class BlogBo {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public AuthorBo getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(AuthorBo author) {
+        this.author = author;
     }
 }

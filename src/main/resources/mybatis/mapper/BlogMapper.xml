@@ -7,7 +7,12 @@
         <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="briefIntroduction" column="brief_introduction" jdbcType="VARCHAR"/>
         <result property="content" column="content" jdbcType="VARCHAR"/>
-        <result property="createdAt" column="created_at" jdbcType="DATE"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <association property="author" javaType="AuthorBo">
+            <id property="authorId" column="author_id" jdbcType="INTEGER"/>
+            <result property="avatarUrl" column="avatar_url" jdbcType="VARCHAR"/>
+            <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+        </association>
     </resultMap>
 
     <!-- 添加博客 -->
@@ -29,26 +34,34 @@
     <!-- 查询博客列表 -->
     <select id="selectBlogList_BLOG" resultMap="blogBo">
         SELECT
-         auto_id,
-         title_image_url,
-         title,
-         brief_introduction,
-         content
+         a.auto_id as auto_id,
+         a.title_image_url as title_image_url,
+         a.title as title,
+         a.brief_introduction as brief_introduction,
+         a.content as content,
+         a.author_id as author_id,
+         b.avatar_url as avatar_url,
+         b.nickname as nickname
          FROM
-         blog
+         blog a
+         join user b on a.author_id = b.auto_id
     </select>
 
     <!--查询一篇日志-->
     <select id="selectBlogOne_BLOG" resultMap="blogBo">
         SELECT
-         title_image_url,
-         title,
-         brief_introduction,
-         content,
-         created_at
+         a.title_image_url as title_image_url,
+         a.title as title,
+         a.brief_introduction as brief_introduction,
+         a.content as content,
+         a.created_at as created_at,
+         a.author_id as author_id,
+         b.avatar_url as avatar_url,
+         b.nickname as nickname
          FROM
-         blog
-         where auto_id = #{id}
+         blog a
+         join user b on a.author_id = b.auto_id
+         where a.auto_id = #{id}
     </select>
 
 </mapper>

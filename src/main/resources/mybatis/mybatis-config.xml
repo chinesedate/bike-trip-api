@@ -6,5 +6,6 @@
     <typeAliases>
         <typeAlias alias="UserBo" type="com.example.project.model.bo.UserBo"/>
         <typeAlias alias="BlogBo" type="com.example.project.model.bo.BlogBo"/>
+        <typeAlias alias="AuthorBo" type="com.example.project.model.bo.AuthorBo"/>
     </typeAliases>
 </configuration>
