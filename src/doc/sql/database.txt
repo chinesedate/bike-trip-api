@@ -23,3 +23,35 @@ create table if not exists blog(
     created_at datetime null default null comment '创建时间',
     PRIMARY KEY(auto_id)
 ) comment='博客表';
+
+评论表:blog_comment
+create table if not exists blog_comment(
+    auto_id int(11) not null auto_increment comment '自增id',
+    blog_id int(11) not null comment '博客id',
+    parent_id int(11) not null comment '被回复的评论id',
+    user_id int(11) not null comment '该评论所属用户id',
+    p_user_id int(11) not null comment '被回复的评论所属用户id',
+    content varchar(1000) not null comment '评论内容',
+    created_at datetime null default null comment '创建时间',
+    PRIMARY KEY(auto_id)
+)comment='博客评论表';
+
+博客点赞表:blog_like
+create table if not exists blog_like(
+    auto_id int(11) not null auto_increment comment '自增id',
+    blog_id int(11) not null comment '博客id',
+    user_id int(11) not null comment '该点赞行为所属用户id',
+    like_status tinyint(1) not null comment '点赞',
+    created_at datetime null default null comment '创建时间',
+    PRIMARY KEY(auto_id)
+)comment='博客点赞表';
+
+博客评论点赞表:blog_comment_like
+create table if not exists blog_comment_like(
+ auto_id int(11) not null auto_increment comment '自增id',
+    comment_id int(11) not null comment '评论信息id',
+    user_id int(11) not null comment '该点赞行为所属用户id',
+    like_status tinyint(1) not null comment '点赞',
+    created_at datetime null default null comment '创建时间',
+    PRIMARY KEY(auto_id)
+)comment='博客评论点赞表';
