@@ -7,6 +7,7 @@ import java.util.Date;
  */
 public class BlogBo {
     private Integer autoId;
+    private Integer authorId;           // 用户id
     private String titleImageUrl;   // 题图地址
     private String title;
     private String content;
@@ -18,7 +19,8 @@ public class BlogBo {
     public BlogBo() {
     }
 
-    public BlogBo(String titleImageUrl, String title, String content) {
+    public BlogBo(Integer authorId, String titleImageUrl, String title, String content) {
+        this.authorId = authorId;
         this.titleImageUrl = titleImageUrl;
         this.title = title;
         this.content = content;
@@ -30,6 +32,14 @@ public class BlogBo {
 
     public void setAutoId(Integer autoId) {
         this.autoId = autoId;
+    }
+
+    public Integer getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
     }
 
     public String getTitleImageUrl() {

@@ -36,7 +36,7 @@ public class AccessController {
         userBo.setPassword(password);
         this.userService.insertUser(userBo);
 
-        return JSONResponse.toSuccess("", "注册成功");
+        return JSONResponse.toSuccess(userBo, "注册成功");
     }
 
     //FIXME: 这里暂时没有做登录权限的控制

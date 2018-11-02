@@ -43,14 +43,49 @@ public class BlogController {
         return JSONResponse.toSuccess(imagePath, "image saved");
     }
 
+    /**
+     * 保存博客草稿
+     * @param authorId
+     * @param titleImageUrl
+     * @param title
+     * @param content
+     * @return
+     */
     @ResponseBody
-    @RequestMapping(value = "/content/save", method = RequestMethod.POST)
-    public Object saveContent(
+    @RequestMapping(value = "/draft/save", method = RequestMethod.POST)
+    public Object saveDraft(
+            @RequestParam("authorId") Integer authorId,
             @RequestParam("titleImageUrl") String titleImageUrl,
             @RequestParam("title") String title,
             @RequestParam("content") String content
     ) {
-        BlogBo bo = new BlogBo(titleImageUrl,title, content);
+        BlogBo bo = new BlogBo(authorId, titleImageUrl, title, content);
+        if (content.startsWith("<p>") && !content.startsWith("<p><img")) {
+            String briefIntroduction = content.substring(3, content.indexOf("</p>"));
+            bo.setBriefIntroduction(briefIntroduction);
+        }
+        this.blogService.saveBlogContent(bo);
+        return JSONResponse.toSuccess("", "blog saved");
+    }
+
+
+    /**
+     * 保存博客
+     * @param authorId
+     * @param titleImageUrl
+     * @param title
+     * @param content
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/content/save", method = RequestMethod.POST)
+    public Object saveContent(
+            @RequestParam("authorId") Integer authorId,
+            @RequestParam("titleImageUrl") String titleImageUrl,
+            @RequestParam("title") String title,
+            @RequestParam("content") String content
+    ) {
+        BlogBo bo = new BlogBo(authorId, titleImageUrl, title, content);
         if (content.startsWith("<p>") && !content.startsWith("<p><img")) {
             String briefIntroduction = content.substring(3, content.indexOf("</p>"));
             bo.setBriefIntroduction(briefIntroduction);
@@ -61,7 +96,7 @@ public class BlogController {
 
     // 获取日志列表
     @ResponseBody
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Object queryBlogList() {
         List<BlogBo> list = this.blogService.selectBlogList();
         return JSONResponse.toSuccess(list, "blog list got");

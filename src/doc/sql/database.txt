@@ -10,7 +10,7 @@ create table if not exists user(
     password varchar(20) not null comment '密码',
     avatar_url varchar(500) comment '用户头像地址',
     PRIMARY KEY(auto_id)
-) comment='用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci comment='用户信息表';
 
 博客表：blog
 create table if not exists blog(
@@ -22,7 +22,19 @@ create table if not exists blog(
     content varchar(1000) not null comment '正文',
     created_at datetime null default null comment '创建时间',
     PRIMARY KEY(auto_id)
-) comment='博客表';
+)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci comment='博客表';
+
+博客草稿表：blog_draft
+create table if not exists blog_draft(
+    auto_id int(11) not null auto_increment comment '自增id',
+    author_id int(11) not null comment '作者id',
+    title_image_url varchar(1000) null default null comment '题图',
+    title varchar(200) not null comment '标题',
+    brief_introduction varchar(200) not null comment '正文简介',
+    content varchar(1000) not null comment '正文',
+    created_at datetime null default null comment '创建时间',
+    PRIMARY KEY(auto_id)
+)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci comment='博客草稿表';
 
 评论表:blog_comment
 create table if not exists blog_comment(
@@ -34,7 +46,7 @@ create table if not exists blog_comment(
     content varchar(1000) not null comment '评论内容',
     created_at datetime null default null comment '创建时间',
     PRIMARY KEY(auto_id)
-)comment='博客评论表';
+)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci comment='博客评论表';
 
 博客点赞表:blog_like
 create table if not exists blog_like(
@@ -44,7 +56,7 @@ create table if not exists blog_like(
     like_status tinyint(1) not null comment '点赞',
     created_at datetime null default null comment '创建时间',
     PRIMARY KEY(auto_id)
-)comment='博客点赞表';
+)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci comment='博客点赞表';
 
 博客评论点赞表:blog_comment_like
 create table if not exists blog_comment_like(
@@ -54,4 +66,4 @@ create table if not exists blog_comment_like(
     like_status tinyint(1) not null comment '点赞',
     created_at datetime null default null comment '创建时间',
     PRIMARY KEY(auto_id)
-)comment='博客评论点赞表';
+)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci comment='博客评论点赞表';

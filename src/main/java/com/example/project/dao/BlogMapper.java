@@ -11,7 +11,9 @@ import java.util.List;
 @Component
 public interface BlogMapper {
 
-    int saveBlogContent_BLOG(BlogBo bo);
+    void saveBlogContent_BLOG(BlogBo bo);
+
+    void saveBlogDraft_BLOG_DRAFT(BlogBo bo);
 
     List<BlogBo> selectBlogList_BLOG();
 

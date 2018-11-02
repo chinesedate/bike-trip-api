@@ -17,15 +17,19 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private BlogMapper blogMapper;
 
-    public int saveBlogContent(BlogBo bo) {
-        return this.blogMapper.saveBlogContent_BLOG(bo);
+    public void saveBlogContent(BlogBo bo) {
+        this.blogMapper.saveBlogContent_BLOG(bo);
+    }
+
+    public void saveBlogDraft(BlogBo bo) {
+        this.blogMapper.saveBlogDraft_BLOG_DRAFT(bo);
     }
 
     public List<BlogBo> selectBlogList() {
         return this.blogMapper.selectBlogList_BLOG();
     }
 
-    public BlogBo selectBlogOne(Integer id){
+    public BlogBo selectBlogOne(Integer id) {
         return this.blogMapper.selectBlogOne_BLOG(id);
     }
 }

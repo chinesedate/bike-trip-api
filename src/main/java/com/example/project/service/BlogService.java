@@ -9,7 +9,10 @@ import java.util.List;
  */
 public interface BlogService {
     // 保存博客信息
-    int saveBlogContent(BlogBo bo);
+    void saveBlogContent(BlogBo bo);
+
+    // 保存博客草稿
+    void saveBlogDraft(BlogBo bo);
 
     // 查询博客列表
     List<BlogBo> selectBlogList();
