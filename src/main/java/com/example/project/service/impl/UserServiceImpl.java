@@ -24,4 +24,8 @@ public class UserServiceImpl implements UserService {
     public Integer countUser(String userName, String password) {
         return this.userMapper.countUser_USER(userName, password);
     }
+
+    public Integer selectUserId(String userName) {
+        return this.userMapper.selectUserId_USER(userName);
+    }
 }

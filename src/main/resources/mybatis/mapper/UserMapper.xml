@@ -31,4 +31,14 @@
           password = #{password}
     </select>
 
+    <!--查询用户id-->
+    <select id="selectUserId_USER" resultType="Integer">
+        SELECT
+        auto_id
+        FROM
+        USER
+         where
+          user_name = #{userName}
+    </select>
+
 </mapper>

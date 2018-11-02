@@ -53,7 +53,8 @@ public class AccessController {
         } else if (count < 1) {
             return JSONResponse.toFail("", "用户不存在");
         } else {
-            return JSONResponse.toSuccess("", "登录成功");
+            Integer userId = this.userService.selectUserId(userName);
+            return JSONResponse.toSuccess(userId, "登录成功");
         }
     }
 
