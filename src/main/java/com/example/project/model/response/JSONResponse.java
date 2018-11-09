@@ -8,6 +8,7 @@ import javax.swing.plaf.PanelUI;
 public class JSONResponse {
     private static final int SUCCESS = 1;
     private static final int FAILURE = 0;
+    private static final int SESSION_OUT = 2;
 
 
     private Object data;
@@ -27,6 +28,10 @@ public class JSONResponse {
 
     public static JSONResponse toFail(Object data, String message) {
         return new JSONResponse(data, message, FAILURE);
+    }
+
+    public static JSONResponse sessionOut(Object data, String message) {
+        return new JSONResponse(data, message, SESSION_OUT);
     }
 
     public Integer getStatus() {

@@ -36,9 +36,20 @@
         SELECT
         auto_id
         FROM
-        USER
+        user
          where
           user_name = #{userName}
+    </select>
+
+    <!--查询用户用以登录校验-->
+    <select id="queryUser_USER" resultMap="userBo">
+        SELECT
+        auto_id,
+        user_name,
+        password
+        FROM
+        user
+        where user_name = #{userName} and is_deleted = 0
     </select>
 
 </mapper>

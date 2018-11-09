@@ -14,4 +14,6 @@ public interface UserMapper {
     Integer countUser_USER(@Param("userName") String userName, @Param("password") String password);
 
     Integer selectUserId_USER(String userName);
+
+    UserBo queryUser_USER(String userName);
 }

@@ -9,6 +9,7 @@ create table if not exists user(
     nickname varchar(20) comment '用户昵称',
     password varchar(20) not null comment '密码',
     avatar_url varchar(500) comment '用户头像地址',
+    is_deleted tinyint(1) not null default 0 comment '是否删除（0表示未删除，1表示删除）',
     PRIMARY KEY(auto_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci comment='用户信息表';
 

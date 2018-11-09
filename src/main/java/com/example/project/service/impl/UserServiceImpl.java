@@ -28,4 +28,8 @@ public class UserServiceImpl implements UserService {
     public Integer selectUserId(String userName) {
         return this.userMapper.selectUserId_USER(userName);
     }
+
+    public UserBo queryUser(String userName) {
+        return this.userMapper.queryUser_USER(userName);
+    }
 }
