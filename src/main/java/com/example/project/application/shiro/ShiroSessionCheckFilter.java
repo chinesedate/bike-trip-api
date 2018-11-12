@@ -17,7 +17,7 @@ import java.io.PrintWriter;
  * Created by xuhan on 2018/11/9.
  */
 public class ShiroSessionCheckFilter extends FormAuthenticationFilter {
-    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
+    public boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
         Subject subject = this.getSubject(request, response);
         ShiroUser shiroUser;
         if (subject != null && subject.isAuthenticated() && (shiroUser = (ShiroUser) subject.getPrincipal()) != null && shiroUser.getUid() != null) {

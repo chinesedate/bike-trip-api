@@ -60,37 +60,41 @@ public class Application {
 //        return registration;
 //    }
 
-    @Bean
-    public ShiroSessionCheckFilter sessionCheck() {
-        return new ShiroSessionCheckFilter();
-    }
-
+    /**
+     * TODO: 如果将自定义filter交给spring管理，出现shiro默认filter功能失效，原因待查
+     *
+     * @return
+     */
+//    @Bean
+//    public ShiroSessionCheckFilter sessionCheckFilter() {
+//        return new ShiroSessionCheckFilter();
+//    }
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean() {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager());
-//        Map<String, Filter> filterMap = new HashMap<>();
-//        filterMap.put("sessioncheck", sessionCheckFilter());
-//        shiroFilterFactoryBean.setFilters(filterMap);
+        Map<String, Filter> filterMap = new HashMap<>();
+        filterMap.put("sessioncheck", new ShiroSessionCheckFilter());
+        shiroFilterFactoryBean.setFilters(filterMap);
 //        shiroFilterFactoryBean.getFilters().put("sessioncheck", sessionCheckFilter());
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/sign/in", "anon");
-//        filterChainDefinitionMap.put("/blog/list", "anon");
-//        filterChainDefinitionMap.put("/blog/one/*", "anon");
+        filterChainDefinitionMap.put("/blog/list", "anon");
+        filterChainDefinitionMap.put("/blog/one/*", "anon");
         filterChainDefinitionMap.put("/image/blog/*", "anon");
-        filterChainDefinitionMap.put("/**", "sessionCheck");
+        filterChainDefinitionMap.put("/**", "sessioncheck");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
 
     }
 
-    @Bean
-    public FilterRegistrationBean sessionCheckFilterRegistration() {
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-        filterRegistrationBean.setFilter(sessionCheck());
-        filterRegistrationBean.setEnabled(true);
-        return filterRegistrationBean;
-    }
+//    @Bean
+//    public FilterRegistrationBean sessionCheckFilterRegistration() {
+//        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+//        filterRegistrationBean.setFilter(sessionCheck());
+//        filterRegistrationBean.setEnabled(true);
+//        return filterRegistrationBean;
+//    }
 
 
 }
