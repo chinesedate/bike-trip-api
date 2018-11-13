@@ -1,7 +1,5 @@
 package com.example.project.model.response;
 
-import javax.swing.plaf.PanelUI;
-
 /**
  * Created by xuhan on 2018/7/3.
  */

@@ -19,4 +19,7 @@ public interface BlogService {
 
     // 查询一篇博客
     BlogBo selectBlogOne(Integer id);
+
+    // 博客点赞
+    void blogLike(Integer blogId, Integer userId);
 }

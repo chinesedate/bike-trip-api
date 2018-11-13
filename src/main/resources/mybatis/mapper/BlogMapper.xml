@@ -85,4 +85,20 @@
          where a.auto_id = #{id}
     </select>
 
+    <!--博客点赞-->
+    <insert id="blogLike_BLOG_LIKE">
+        INSERT INTO
+        blog_like(
+        blog_id,
+        user_id,
+        like_status,
+        created_at
+        ) VALUE (
+        #{blogId},
+        #{userId},
+        1,
+        now()
+        )
+    </insert>
+
 </mapper>

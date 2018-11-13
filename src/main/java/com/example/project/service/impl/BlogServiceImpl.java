@@ -32,4 +32,8 @@ public class BlogServiceImpl implements BlogService {
     public BlogBo selectBlogOne(Integer id) {
         return this.blogMapper.selectBlogOne_BLOG(id);
     }
+
+    public void blogLike(Integer blogId, Integer userId) {
+        this.blogMapper.blogLike_BLOG_LIKE(blogId, userId);
+    }
 }

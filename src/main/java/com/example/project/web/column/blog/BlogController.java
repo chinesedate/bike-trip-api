@@ -4,6 +4,7 @@ import com.example.project.model.bo.BlogBo;
 import com.example.project.model.response.JSONResponse;
 import com.example.project.service.BlogService;
 import com.example.project.utils.FtpUtil;
+import com.example.project.web.BaseController;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
  */
 @Controller
 @RequestMapping(value = "/blog")
-public class BlogController {
+public class BlogController extends BaseController {
 
     @Autowired
     private BlogService blogService;
@@ -45,6 +46,7 @@ public class BlogController {
 
     /**
      * 保存博客草稿
+     *
      * @param authorId
      * @param titleImageUrl
      * @param title
@@ -71,6 +73,7 @@ public class BlogController {
 
     /**
      * 保存博客
+     *
      * @param authorId
      * @param titleImageUrl
      * @param title
@@ -110,5 +113,24 @@ public class BlogController {
     ) {
         BlogBo blogBo = this.blogService.selectBlogOne(id);
         return JSONResponse.toSuccess(blogBo, "one blog got");
+    }
+
+    /**
+     * 给博客点赞
+     *
+     * @param id 博客id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/like/{id}", method = RequestMethod.POST)
+    public Object likeBlog(
+            @PathVariable("id") Integer id
+    ) {
+        Integer userId = getCurrentUserId();
+        // userId为null表示当前用户未登录，点赞不做记录
+        if (userId != null) {
+            this.blogService.blogLike(id, userId);
+        }
+        return JSONResponse.toSuccess("", "blog liked");
     }
 }
