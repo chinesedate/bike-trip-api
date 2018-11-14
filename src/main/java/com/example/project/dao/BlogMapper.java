@@ -22,4 +22,13 @@ public interface BlogMapper {
 
     // 博客点赞
     void blogLike_BLOG_LIKE(@Param("blogId") Integer blogId, @Param("userId") Integer userId);
+
+    // 取消博客点赞
+    void blogRemoveLike_BLOG_LIKE(@Param("blogId") Integer blogId, @Param("userId") Integer userId);
+
+    // 博客点赞数加1
+    void increaseLikeCount_BLOG_LIKE(@Param("type")Integer type, @Param("blogId")Integer blogId);
+
+    // 博客点赞数减1
+    void decreaseLikeCount_BLOG_LIKE(@Param("type")Integer type, @Param("blogId")Integer blogId);
 }

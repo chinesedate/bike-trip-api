@@ -99,6 +99,43 @@
         1,
         now()
         )
+        ON DUPLICATE KEY UPDATE like_status = 1
     </insert>
+
+    <!--取消博客点赞-->
+    <update id="blogRemoveLike_BLOG_LIKE">
+        update
+        blog_like
+        set
+        like_status = 0,
+        modified_at = now()
+        where blog_id = #{blogId} and user_id = #{userId}
+    </update>
+
+    <!--博客点赞数加1-->
+    <insert id="increaseLikeCount_BLOG_LIKE">
+        INSERT INTO
+        blog_action_count(
+        type,
+        blog_id,
+        count,
+        created_at
+        ) VALUE (
+        #{type},
+        #{blogId},
+        1,
+        now()
+        ) ON DUPLICATE KEY UPDATE count = count + 1,modified_at = now()
+    </insert>
+
+    <!--博客点赞数减1-->
+    <update id="decreaseLikeCount_BLOG_LIKE">
+        UPDATE
+        blog_action_count
+        SET
+        count = count - 1,
+        modified_at = now()
+        wher type = #{type} and blog_id = #{blogId} and count != 0
+    </update>
 
 </mapper>

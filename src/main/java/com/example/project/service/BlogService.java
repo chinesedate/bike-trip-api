@@ -22,4 +22,13 @@ public interface BlogService {
 
     // 博客点赞
     void blogLike(Integer blogId, Integer userId);
+
+    // 取消博客点赞
+    void blogRemoveLike(Integer blogId, Integer userId);
+
+    // 博客点赞数加1
+    void increaseLikeCount(Integer type, Integer blogId);
+
+    // 博客点赞数减1
+    void decreaseLikeCount(Integer type, Integer blogId);
 }

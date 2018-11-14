@@ -1,5 +1,6 @@
 package com.example.project.web.column.blog;
 
+import com.example.project.enums.BlogActionTypeEnum;
 import com.example.project.model.bo.BlogBo;
 import com.example.project.model.response.JSONResponse;
 import com.example.project.service.BlogService;
@@ -97,7 +98,10 @@ public class BlogController extends BaseController {
         return JSONResponse.toSuccess("", "blog saved");
     }
 
-    // 获取日志列表
+    /**
+     * 获取博客列表
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Object queryBlogList() {
@@ -119,17 +123,29 @@ public class BlogController extends BaseController {
      * 给博客点赞
      *
      * @param id 博客id
+     * @param status 点赞状态（1表示点赞，0表示取消点赞）
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/like/{id}", method = RequestMethod.POST)
     public Object likeBlog(
-            @PathVariable("id") Integer id
+            @PathVariable("id") Integer id,
+            @RequestParam("status") Integer status
     ) {
         Integer userId = getCurrentUserId();
-        // userId为null表示当前用户未登录，点赞不做记录
+        // userId为null表示当前用户未登录，操作不做记录
         if (userId != null) {
-            this.blogService.blogLike(id, userId);
+            if (status == 0) {
+                // 取消点赞
+                this.blogService.blogRemoveLike(id, userId);
+                // 点赞数减1
+                this.blogService.decreaseLikeCount(BlogActionTypeEnum.LIKE.getType(),id);
+            } else {
+                // 点赞
+                this.blogService.blogLike(id, userId);
+                // 点赞数加1
+                this.blogService.increaseLikeCount(BlogActionTypeEnum.LIKE.getType(), id);
+            }
         }
         return JSONResponse.toSuccess("", "blog liked");
     }

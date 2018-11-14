@@ -36,4 +36,16 @@ public class BlogServiceImpl implements BlogService {
     public void blogLike(Integer blogId, Integer userId) {
         this.blogMapper.blogLike_BLOG_LIKE(blogId, userId);
     }
+
+    public void blogRemoveLike(Integer blogId, Integer userId) {
+        this.blogMapper.blogRemoveLike_BLOG_LIKE(blogId, userId);
+    }
+
+    public void increaseLikeCount(Integer type, Integer blogId) {
+        this.blogMapper.increaseLikeCount_BLOG_LIKE(type, blogId);
+    }
+
+    public void decreaseLikeCount(Integer type, Integer blogId) {
+        this.blogMapper.decreaseLikeCount_BLOG_LIKE(type, blogId);
+    }
 }

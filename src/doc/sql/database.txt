@@ -56,15 +56,29 @@ create table if not exists blog_like(
     user_id int(11) not null comment '该点赞行为所属用户id',
     like_status tinyint(1) not null comment '点赞',
     created_at datetime null default null comment '创建时间',
-    PRIMARY KEY(auto_id)
+    modified_at datetime null default null comment '修改时间',
+    PRIMARY KEY(auto_id),
+    UNIQUE KEY idx_blog_user (blog_id,user_id) USING HASH
 )ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci comment='博客点赞表';
 
 博客评论点赞表:blog_comment_like
 create table if not exists blog_comment_like(
- auto_id int(11) not null auto_increment comment '自增id',
+    auto_id int(11) not null auto_increment comment '自增id',
     comment_id int(11) not null comment '评论信息id',
     user_id int(11) not null comment '该点赞行为所属用户id',
     like_status tinyint(1) not null comment '点赞',
     created_at datetime null default null comment '创建时间',
     PRIMARY KEY(auto_id)
 )ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci comment='博客评论点赞表';
+
+博客操作数记录表:blog_action_count
+create table if not exists blog_action_count(
+       auto_id int(11) not null auto_increment comment '自增id',
+       type tinyint(4) unsigned not null default 0 comment '操作类型（0表示点赞）',
+       blog_id int(11) not null comment '博客id',
+       count int(11) not null default 0 comment '计数',
+       created_at datetime null default null comment '创建时间',
+       modified_at datetime null default null comment '修改时间',
+       PRIMARY KEY(auto_id),
+       UNIQUE KEY idx_type_blog (type,blog_id) USING HASH
+)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci comment='博客操作数记录表';
