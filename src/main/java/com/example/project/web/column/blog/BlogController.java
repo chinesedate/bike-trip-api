@@ -48,7 +48,6 @@ public class BlogController extends BaseController {
     /**
      * 保存博客草稿
      *
-     * @param authorId
      * @param titleImageUrl
      * @param title
      * @param content
@@ -57,17 +56,17 @@ public class BlogController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/draft/save", method = RequestMethod.POST)
     public Object saveDraft(
-            @RequestParam("authorId") Integer authorId,
             @RequestParam("titleImageUrl") String titleImageUrl,
             @RequestParam("title") String title,
             @RequestParam("content") String content
     ) {
+        Integer authorId = getCurrentUserId();
         BlogBo bo = new BlogBo(authorId, titleImageUrl, title, content);
         if (content.startsWith("<p>") && !content.startsWith("<p><img")) {
             String briefIntroduction = content.substring(3, content.indexOf("</p>"));
             bo.setBriefIntroduction(briefIntroduction);
         }
-        this.blogService.saveBlogContent(bo);
+        this.blogService.saveBlogDraft(bo);
         return JSONResponse.toSuccess("", "blog saved");
     }
 
@@ -75,7 +74,6 @@ public class BlogController extends BaseController {
     /**
      * 保存博客
      *
-     * @param authorId
      * @param titleImageUrl
      * @param title
      * @param content
@@ -84,11 +82,11 @@ public class BlogController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/content/save", method = RequestMethod.POST)
     public Object saveContent(
-            @RequestParam("authorId") Integer authorId,
             @RequestParam("titleImageUrl") String titleImageUrl,
             @RequestParam("title") String title,
             @RequestParam("content") String content
     ) {
+        Integer authorId = getCurrentUserId();
         BlogBo bo = new BlogBo(authorId, titleImageUrl, title, content);
         if (content.startsWith("<p>") && !content.startsWith("<p><img")) {
             String briefIntroduction = content.substring(3, content.indexOf("</p>"));

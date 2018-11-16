@@ -55,7 +55,7 @@ public class AccessController {
         UsernamePasswordToken token = new UsernamePasswordToken();
         token.setUsername(userName);
         token.setPassword(password.toCharArray());
-        token.setRememberMe(true);
+//        token.setRememberMe(true);
 
         Subject currentUser = SecurityUtils.getSubject();
 

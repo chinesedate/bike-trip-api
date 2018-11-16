@@ -82,6 +82,7 @@ public class Application {
         filterChainDefinitionMap.put("/blog/list", "anon");
         filterChainDefinitionMap.put("/blog/one/*", "anon");
         filterChainDefinitionMap.put("/blog/image/upload", "anon");  // 博客图片上传
+        filterChainDefinitionMap.put("/blog/draft/save", "anon");     // 保存博客草稿
         filterChainDefinitionMap.put("/image/blog/*", "anon");
         filterChainDefinitionMap.put("/**", "sessioncheck");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
